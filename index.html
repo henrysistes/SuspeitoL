@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detetive: O Caso do Assassinato no Hotel</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .game-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #2a2a2a;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+        h1, h2 {
+            color: #ff4444;
+            text-align: center;
+        }
+        .scene {
+            display: none;
+        }
+        .scene.active {
+            display: block;
+        }
+        button {
+            background-color: #ff4444;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+        button:hover {
+            background-color: #cc3333;
+        }
+        .choice {
+            margin: 10px 0;
+        }
+        .result {
+            font-weight: bold;
+            color: #ffcc00;
+            text-align: center;
+        }
+        .lose-screen {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            color: #ff4444;
+            text-align: center;
+            padding-top: 20%;
+            font-size: 36px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1>Detetive: O Caso do Assassinato no Hotel</h1>
+
+        <!-- Cena 1: Introdução -->
+        <div id="scene1" class="scene active">
+            <p>Você é o Detetive Almeida. Um assassinato ocorreu no Hotel Estrela do Norte. A vítima, Sr. Roberto, foi encontrada morta em seu quarto com uma facada no peito. Quatro suspeitos estão no hotel: Costela, Isabelly, Fernanda e Arthur. Sua missão é interrogar e descobrir quem é o assassino.</p>
+            <p>Você está na recepção do hotel. O que deseja fazer?</p>
+            <div class="choice">
+                <button onclick="showScene('scene2')">Interrogar os suspeitos</button>
+                <button onclick="showScene('scene3')">Examinar o quarto da vítima</button>
+            </div>
+        </div>
+
+        <!-- Cena 2: Interrogatório Inicial -->
+        <div id="scene2" class="scene">
+            <h2>Interrogatório</h2>
+            <p>Você reúne os quatro suspeitos no saguão. Quem você interroga primeiro?</p>
+            <div class="choice">
+                <button onclick="showScene('scene4')">Costela</button>
+                <button onclick="showScene('scene5')">Isabelly</button>
+                <button onclick="showScene('scene6')">Fernanda</button>
+                <button onclick="showScene('scene7')">Arthur</button>
+            </div>
+        </div>
+
+        <!-- Cena 3: Quarto da Vítima -->
+        <div id="scene3" class="scene">
+            <h2>Quarto da Vítima</h2>
+            <p>Você examina o quarto. Há sangue na cama, uma faca jogada no canto e um copo quebrado no chão. Uma janela está entreaberta, e você nota um brinco pequeno caído perto dela.</p>
+            <div class="choice">
+                <button onclick="showScene('scene2')">Voltar e interrogar os suspeitos</button>
+                <button onclick="showScene('scene8')">Procurar impressões digitais na faca</button>
+            </div>
+        </div>
+
+        <!-- Cena 4: Interrogando Costela -->
+        <div id="scene4" class="scene">
+            <h2>Costela</h2>
+            <p>Costela está sentado, olhando para o chão. Você pergunta onde ele estava na hora do crime.</p>
+            <p>Ele murmura: "Estava no bar do hotel. Sozinho. Não vi nada."</p>
+            <div class="choice">
+                <button onclick="showScene('scene2')">Interrogar outro suspeito</button>
+                <button onclick="showScene('scene9')">Perguntar se alguém pode confirmar</button>
+                <button onclick="showScene('scene13')">Perguntar quem ele acha que é o culpado</button>
+            </div>
+        </div>
+
+        <!-- Cena 5: Interrogando Isabelly -->
+        <div id="scene5" class="scene">
+            <h2>Isabelly</h2>
+            <p>Isabelly sorri nervosamente e fala rápido: "Eu? Estava dançando no salão! Adoro uma música alta! Mas, hum, acho que deixei meu brinco em algum lugar... você sabe onde está?, sei lá!"</p>
+            <div class="choice">
+                <button onclick="showScene('scene2')">Interrogar outro suspeito</button>
+                <button onclick="showScene('scene10')">Perguntar sobre o brinco</button>
+                <button onclick="showScene('scene14')">Perguntar quem ela acha que é o culpado</button>
+            </div>
+        </div>
+
+        <!-- Cena 6: Interrogando Fernanda -->
+        <div id="scene6" class="scene">
+            <h2>Fernanda</h2>
+            <p>Fernanda cruza os braços e fala com calma: "Eu estava no meu quarto, lendo. Não ouvi nada. Não tenho motivo pra mentir."</p>
+            <div class="choice">
+                <button onclick="showScene('scene2')">Interrogar outro suspeito</button>
+                <button onclick="showScene('scene11')">Perguntar sobre o barulho</button>
+                <button onclick="showScene('scene15')">Perguntar quem ela acha que é o culpado</button>
+            </div>
+        </div>
+
+        <!-- Cena 7: Interrogando Arthur -->
+        <div id="scene7" class="scene">
+            <h2>Arthur</h2>
+            <p>Arthur te encara com um sorriso: "Eu estava listando algumas coisas... bem, eu bem que poderia ser o assassino, interessante."</p>
+            <div class="choice">
+                <button onclick="showScene('scene2')">Interrogar outro suspeito</button>
+                <button onclick="showScene('scene12')">Perguntar sobre o Sr. Roberto</button>
+                <button onclick="showScene('scene16')">Perguntar quem ele acha que é o culpado</button>
+            </div>
+        </div>
+
+        <!-- Cena 8: Impressões Digitais -->
+        <div id="scene8" class="scene">
+            <p>A faca tem impressões digitais parciais, mas estão borradas. O brinco perto da janela é dourado e pequeno, como os que Isabelly usa.</p>
+            <div class="choice">
+                <button onclick="showScene('scene2')">Interrogar outro suspeito</button>
+            </div>
+        </div>
+
+        <!-- Cena 9: Costela - Confirmação -->
+        <div id="scene9" class="scene">
+            <p>Costela suspira: "O barman me viu, acho. Não prestei atenção."</p>
+            <div class="choice">
+                <button onclick="showScene('scene2')">Interrogar outro suspeito</button>
+            </div>
+        </div>
+
+        <!-- Cena 10: Isabelly - Brinco -->
+        <div id="scene10" class="scene">
+            <p>Isabelly ri alto: "Meu brinco? Perdi um hoje, acho! O Arthur é muito suspeito além disso."</p>
+            <div class="choice">
+                <button onclick="showScene('scene2')">Interrogar outro suspeito</button>
+            </div>
+        </div>
+
+        <!-- Cena 11: Fernanda - Barulho -->
+        <div id="scene11" class="scene">
+            <p>Fernanda franze a testa: "O quarto ao lado é bem isolado. Não ouvi nada, já disse."</p>
+            <div class="choice">
+                <button onclick="showScene('scene2')">Interrogar outro suspeito</button>
+            </div>
+        </div>
+
+        <!-- Cena 12: Arthur - Sr. Roberto -->
+        <div id="scene12" class="scene">
+            <p>Arthur dá uma risada seca: "O Roberto era um chato. Sempre metido a esperto."</p>
+            <div class="choice">
+                <button onclick="showScene('scene2')">Interrogar outro suspeito</button>
+            </div>
+        </div>
+
+        <!-- Cena 13: Costela - Culpado -->
+        <div id="scene13" class="scene">
+            <p>Costela murmura: "Se eu fosse você, olhava pro Arthur. Ele tava muito quieto ontem."</p>
+            <div class="choice">
+                <button onclick="showScene('scene2')">Interrogar outro suspeito</button>
+            </div>
+        </div>
+
+        <!-- Cena 14: Isabelly - Culpado -->
+        <div id="scene14" class="scene">
+            <p>Isabelly ri: "Acho que foi o Costela! Ele está muito na dele."</p>
+            <div class="choice">
+                <button onclick="showScene('scene2')">Interrogar outro suspeito</button>
+            </div>
+        </div>
+
+        <!-- Cena 15: Fernanda - Culpado -->
+        <div id="scene15" class="scene">
+            <p>Fernanda fala firme: "Costela. Ele não olha nos olhos de ninguém. Suspeito."</p>
+            <div class="choice">
+                <button onclick="showScene('scene2')">Interrogar outro suspeito</button>
+            </div>
+        </div>
+
+        <!-- Cena 16: Arthur - Culpado -->
+        <div id="scene16" class="scene">
+            <p>Arthur sorri: "A Fernanda, faria agente acusar uns aos outros."</p>
+            <div class="choice">
+                <button onclick="showScene('scene2')">Interrogar outro suspeito</button>
+            </div>
+        </div>
+
+        <!-- Cena Final: Acusação -->
+        <div id="scene17" class="scene">
+            <h2>Acusação Final</h2>
+            <p>Você reuniu as pistas. Quem você acusa de ser o assassino?</p>
+            <div class="choice">
+                <button onclick="showResult('Costela')">Costela</button>
+                <button onclick="showResult('Isabelly')">Isabelly</button>
+                <button onclick="showResult('Fernanda')">Fernanda</button>
+                <button onclick="showResult('Arthur')">Arthur</button>
+            </div>
+            <p id="result" class="result"></p>
+        </div>
+
+        <!-- Tela de Erro -->
+        <div id="loseScreen" class="lose-screen">
+            VOCÊ ERROU!<br>O assassino era Isabelly.
+        </div>
+
+    </div>
+
+    <script>
+        function showScene(sceneId) {
+            document.querySelectorAll('.scene').forEach(scene => {
+                scene.classList.remove('active');
+            });
+            document.getElementById(sceneId).classList.add('active');
+
+            // Botão para interrogar outro suspeito ou ir à acusação final
+            if (sceneId !== 'scene17' && sceneId !== 'scene1') {
+                setTimeout(() => {
+                    const existingBtn = document.querySelector(`#${sceneId} .choice button[data-final]`);
+                    if (!existingBtn) {
+                        const btn = document.createElement('button');
+                        btn.textContent = 'Ir para a acusação final';
+                        btn.setAttribute('data-final', 'true');
+                        btn.onclick = () => showScene('scene17');
+                        document.querySelector(`#${sceneId} .choice`).appendChild(btn);
+                    }
+                }, 1000);
+            }
+        }
+
+        function showResult(accused) {
+            const result = document.getElementById('result');
+            const loseScreen = document.getElementById('loseScreen');
+            if (accused === 'Isabelly') {
+                result.textContent = 'Correto! Isabelly é a assassina. Ela matou o Sr. Roberto em um acesso de raiva e usou sua confusão para despistar.';
+            } else {
+                loseScreen.style.display = 'block';
+                document.querySelector('.game-container').style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
