@@ -79,6 +79,8 @@
             <div class="choice">
                 <button onclick="showScene('scene2')">Interrogar os suspeitos</button>
                 <button onclick="showScene('scene3')">Examinar o quarto da vítima</button>
+                <button onclick="showScene('scene18')">Interrogar funcionários do hotel</button>
+                <button onclick="showScene('scene19')">Examinar câmeras de segurança</button>
             </div>
         </div>
 
@@ -97,10 +99,11 @@
         <!-- Cena 3: Quarto da Vítima -->
         <div id="scene3" class="scene">
             <h2>Quarto da Vítima</h2>
-            <p>Você examina o quarto. Há sangue na cama, uma faca jogada no canto e um copo quebrado no chão. Uma janela está entreaberta, e você nota um brinco pequeno e o copo quebrado possui as digitais da fernanda</p>
+            <p>Você examina o quarto. Há sangue na cama, uma faca jogada no canto e um copo quebrado no chão. Uma janela está entreaberta, e você nota um brinco pequeno e uma carta inacabada escrita pelo Sr. Roberto. O copo quebrado possui as digitais da Fernanda.</p>
             <div class="choice">
                 <button onclick="showScene('scene2')">Voltar e interrogar os suspeitos</button>
                 <button onclick="showScene('scene8')">Procurar impressões digitais na faca</button>
+                <button onclick="showScene('scene20')">Examinar a carta inacabada</button>
             </div>
         </div>
 
@@ -221,6 +224,52 @@
             </div>
         </div>
 
+        <!-- Nova Cena 18: Interrogar Funcionários -->
+        <div id="scene18" class="scene">
+            <h2>Interrogar Funcionários</h2>
+            <p>Você decide interrogar os funcionários do hotel. Quem você quer interrogar?</p>
+            <div class="choice">
+                <button onclick="showScene('scene21')">Interrogar o Barman</button>
+                <button onclick="showScene('scene22')">Interrogar a Camareira</button>
+            </div>
+        </div>
+
+        <!-- Nova Cena 19: Examinar Câmeras -->
+        <div id="scene19" class="scene">
+            <h2>Examinar Câmeras</h2>
+            <p>Você verifica as gravações das câmeras de segurança. Você vê o Arthur saindo do quarto da vítima às 21:45, e a Fernanda entrando no quarto às 22:00, saindo rapidamente.</p>
+            <div class="choice">
+                <button onclick="showScene('scene1')">Voltar à recepção</button>
+            </div>
+        </div>
+
+        <!-- Nova Cena 20: Examinar Carta Inacabada -->
+        <div id="scene20" class="scene">
+            <h2>Carta Inacabada</h2>
+            <p>A carta diz: "Querido amigo, descobri algo terrível sobre F. Ela não é quem parece ser. Preciso contar a alguém antes que seja tarde demais..."</p>
+            <div class="choice">
+                <button onclick="showScene('scene3')">Voltar ao quarto da vítima</button>
+            </div>
+        </div>
+
+        <!-- Nova Cena 21: Interrogar Barman -->
+        <div id="scene21" class="scene">
+            <h2>Barman</h2>
+            <p>O barman confirma que o Costela estava no bar, mas ele saiu por cerca de 10 minutos para ir ao banheiro por volta das 22:00.</p>
+            <div class="choice">
+                <button onclick="showScene('scene18')">Interrogar outro funcionário</button>
+            </div>
+        </div>
+
+        <!-- Nova Cena 22: Interrogar Camareira -->
+        <div id="scene22" class="scene">
+            <h2>Camareira</h2>
+            <p>A camareira diz que viu a Fernanda saindo do quarto da vítima com pressa, parecendo nervosa, por volta das 22:05.</p>
+            <div class="choice">
+                <button onclick="showScene('scene18')">Interrogar outro funcionário</button>
+            </div>
+        </div>
+
         <!-- Cena Final: Acusação -->
         <div id="scene17" class="scene">
             <h2>Acusação Final</h2>
@@ -236,9 +285,8 @@
 
         <!-- Tela de Erro -->
         <div id="loseScreen" class="lose-screen">
-            VOCÊ ERROU!<br>O assassino era Isabelly.
+            VOCÊ ERROU!<br>O assassino era Fernanda.
         </div>
-
     </div>
 
     <script>
@@ -266,8 +314,8 @@
         function showResult(accused) {
             const result = document.getElementById('result');
             const loseScreen = document.getElementById('loseScreen');
-            if (accused === 'Isabelly') {
-                result.textContent = 'Correto! Isabelly é a assassina. Ela matou o Sr. Roberto em um acesso de raiva e usou sua confusão para despistar.';
+            if (accused === 'Fernanda') {
+                result.textContent = 'Correto! Fernanda é a assassina. Ela matou o Sr. Roberto para esconder um segredo que ele estava prestes a revelar.';
             } else {
                 loseScreen.style.display = 'block';
                 document.querySelector('.game-container').style.display = 'none';
@@ -275,4 +323,4 @@
         }
     </script>
 </body>
-</html>
+                                                                           </html>
